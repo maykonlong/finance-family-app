@@ -1,0 +1,49 @@
+[
+  {"tipo": "Receita", "categoria": "Salário", "subgrupo": "Salário mensal"},
+  {"tipo": "Receita", "categoria": "Bônus", "subgrupo": "Bônus ocasional"},
+  {"tipo": "Receita", "categoria": "Investimentos", "subgrupo": "Dividendos"},
+  {"tipo": "Receita", "categoria": "Rendimentos", "subgrupo": "Juros"},
+  {"tipo": "Receita", "categoria": "Venda", "subgrupo": "Venda de ativo"},
+  {"tipo": "Receita", "categoria": "Reembolso", "subgrupo": "Reembolso recebido"},
+
+  {"tipo": "Despesa", "categoria": "Moradia", "subgrupo": "Aluguel"},
+  {"tipo": "Despesa", "categoria": "Moradia", "subgrupo": "Condomínio"},
+  {"tipo": "Despesa", "categoria": "Moradia", "subgrupo": "IPTU"},
+  {"tipo": "Despesa", "categoria": "Alimentação", "subgrupo": "Supermercado"},
+  {"tipo": "Despesa", "categoria": "Alimentação", "subgrupo": "Restaurante"},
+  {"tipo": "Despesa", "categoria": "Transporte", "subgrupo": "Combustível"},
+  {"tipo": "Despesa", "categoria": "Transporte", "subgrupo": "Manutenção"},
+  {"tipo": "Despesa", "categoria": "Saúde", "subgrupo": "Plano de saúde"},
+  {"tipo": "Despesa", "categoria": "Saúde", "subgrupo": "Medicamentos"},
+  {"tipo": "Despesa", "categoria": "Educação", "subgrupo": "Mensalidade"},
+  {"tipo": "Despesa", "categoria": "Lazer", "subgrupo": "Viagens"},
+  {"tipo": "Despesa", "categoria": "Lazer", "subgrupo": "Assinaturas"},
+  {"tipo": "Despesa", "categoria": "Serviços", "subgrupo": "Telefonia & Internet"},
+  {"tipo": "Despesa", "categoria": "Impostos", "subgrupo": "IR & taxas"},
+  {"tipo": "Despesa", "categoria": "Pessoal", "subgrupo": "Roupas & higiene"},
+  {"tipo": "Despesa", "categoria": "Outros", "subgrupo": "Diversos"},
+
+  {"tipo": "Transferência", "categoria": "Conta Corrente", "subgrupo": "Transferência entre contas"},
+  {"tipo": "Transferência", "categoria": "Conta Poupança", "subgrupo": "Depósito/Resgate"},
+  {"tipo": "Transferência", "categoria": "Cartão de Crédito", "subgrupo": "Pagamento de fatura"},
+
+  {"tipo": "Cartão de Crédito", "categoria": "Compras", "subgrupo": "Loja física"},
+  {"tipo": "Cartão de Crédito", "categoria": "Compras", "subgrupo": "Online"},
+  {"tipo": "Cartão de Crédito", "categoria": "Fatura", "subgrupo": "Pagamento parcial"},
+  {"tipo": "Cartão de Crédito", "categoria": "Fatura", "subgrupo": "Pagamento total"},
+  {"tipo": "Cartão de Crédito", "categoria": "Cashback", "subgrupo": "Crédito recebido"},
+
+  {"tipo": "Investimento", "categoria": "Renda Fixa", "subgrupo": "CDB/LCI/LCA/Tesouro"},
+  {"tipo": "Investimento", "categoria": "Renda Variável", "subgrupo": "Ações"},
+  {"tipo": "Investimento", "categoria": "Fundos", "subgrupo": "Fundos de investimento"},
+  {"tipo": "Investimento", "categoria": "Cripto", "subgrupo": "Compra/Venda"},
+  {"tipo": "Investimento", "categoria": "Rendimentos", "subgrupo": "Juros e dividendos"},
+
+  {"tipo": "Reembolso", "categoria": "Viagem", "subgrupo": "Despesas reembolsadas por empresa"},
+  {"tipo": "Reembolso", "categoria": "Saúde", "subgrupo": "Reembolso de plano/convênio"},
+  {"tipo": "Reembolso", "categoria": "Outros", "subgrupo": "Reembolso de compras"},
+
+  {"tipo": "Ajustes & Taxas", "categoria": "Tarifas", "subgrupo": "Tarifas bancárias"},
+  {"tipo": "Ajustes & Taxas", "categoria": "Multas", "subgrupo": "Juros e multas"},
+  {"tipo": "Ajustes & Taxas", "categoria": "Estorno", "subgrupo": "Correção de lançamento"}
+]

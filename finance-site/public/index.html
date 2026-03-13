@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Finance Family 2.0 | Controle Financeiro Familiar</title>
+    <meta name="description" content="Controle financeiro inteligente para sua família. Gerencie receitas, despesas, investimentos e resgates com facilidade.">
+    <meta name="theme-color" content="#6366f1">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="light-theme">
+    <div id="app">
+
+        <!-- ═══ HEADER ═══ -->
+        <header class="header">
+            <div class="header-top">
+                <div class="header-greeting">
+                    <span class="greeting-text">Olá,</span>
+                    <strong id="userName">Família</strong>
+                </div>
+                <div class="header-actions">
+                    <div class="profile-pill" id="profilePicker">
+                        <i data-lucide="users" style="width:16px;height:16px;"></i>
+                        <span id="currentUserName">Bibs</span>
+                        <i data-lucide="chevron-down" style="width:14px;height:14px;opacity:0.6;"></i>
+                        <div class="profile-dropdown" id="profileDropdown"></div>
+                    </div>
+                    <button class="header-icon-btn" id="themeToggle" aria-label="Alternar Tema">
+                        <i data-lucide="moon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Balance Hero -->
+            <div class="balance-hero">
+                <p class="balance-label">Saldo Disponível</p>
+                <h1 id="totalBalance">R$ 0,00</h1>
+            </div>
+
+            <!-- Stats Row -->
+            <div class="stats-row">
+                <div class="stat-card stat-income">
+                    <div class="stat-icon"><i data-lucide="arrow-up-right"></i></div>
+                    <div class="stat-data">
+                        <span>Entradas</span>
+                        <p id="totalIncome">R$ 0,00</p>
+                    </div>
+                </div>
+                <div class="stat-card stat-invest">
+                    <div class="stat-icon"><i data-lucide="landmark"></i></div>
+                    <div class="stat-data">
+                        <span>Investido</span>
+                        <p id="totalInvestment">R$ 0,00</p>
+                    </div>
+                </div>
+                <div class="stat-card stat-expense">
+                    <div class="stat-icon"><i data-lucide="arrow-down-right"></i></div>
+                    <div class="stat-data">
+                        <span>Saídas</span>
+                        <p id="totalExpense">R$ 0,00</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ═══ MAIN CONTENT ═══ -->
+        <main class="main-content">
+            
+            <!-- Global Time Filters -->
+            <div class="time-filter-section">
+                <div class="scope-selector">
+                    <button class="scope-chip" data-scope="day">Dia</button>
+                    <button class="scope-chip" data-scope="week">Semana</button>
+                    <button class="scope-chip active" data-scope="month">Mês</button>
+                    <button class="scope-chip" data-scope="year">Ano</button>
+                    <button class="scope-chip" data-scope="custom">Período</button>
+                    <button class="scope-chip" data-scope="all">Tudo</button>
+                </div>
+
+                <div class="period-selector-bar">
+                    <button class="period-nav-btn" id="prevPeriod"><i data-lucide="chevron-left"></i></button>
+                    <div class="current-period" id="periodDisplay">Março 2026</div>
+                    <button class="period-nav-btn" id="nextPeriod"><i data-lucide="chevron-right"></i></button>
+                </div>
+
+                <div id="customRangePicker" class="custom-range-picker" style="display: none;">
+                    <input type="date" id="startDate">
+                    <span>até</span>
+                    <input type="date" id="endDate">
+                </div>
+            </div>
+
+            <!-- HOME VIEW -->
+            <section id="home-view" class="view active">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Atividade Recente</h2>
+                        <button class="link-btn" id="viewAllBtn">Ver Tudo</button>
+                    </div>
+                    <div id="transactionsList" class="tx-list">
+                        <div class="empty-state">
+                            <i data-lucide="inbox" style="width:48px;height:48px;opacity:0.3;"></i>
+                            <p>Nenhuma transação registrada.</p>
+                            <span>Toque no botão + para começar</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HISTORY VIEW -->
+            <section id="history-view" class="view">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Todas as Transações</h2>
+                    </div>
+                    <div class="search-bar">
+                        <i data-lucide="search"></i>
+                        <input type="text" id="historySearch" placeholder="Buscar por descrição ou categoria...">
+                    </div>
+                    
+                    <!-- Filter Chips -->
+                    <div class="filter-row">
+                        <button class="filter-chip active" data-type="all">Todos</button>
+                        <button class="filter-chip" data-type="receita">Receitas</button>
+                        <button class="filter-chip" data-type="despesa">Despesas</button>
+                        <button class="filter-chip" data-type="investimento">Investimentos</button>
+                        <button class="filter-chip" data-type="resgate">Resgates</button>
+                    </div>
+                    <div id="fullTransactionsList" class="tx-list"></div>
+                </div>
+            </section>
+
+            <!-- STATS VIEW -->
+            <section id="stats-view" class="view">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Visão Geral</h2>
+                    </div>
+                    <div id="statsContainer" class="stats-content">
+                        <div class="empty-state">
+                            <i data-lucide="bar-chart-3" style="width:48px;height:48px;opacity:0.3;"></i>
+                            <p>Adicione transações para ver os gráficos</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SETTINGS VIEW -->
+            <section id="settings-view" class="view">
+                <!-- Family Name -->
+                <div class="card">
+                    <div class="card-header"><h2>Conta</h2></div>
+                    <div class="form-field">
+                        <label for="editUserName">Nome da Família</label>
+                        <input type="text" id="editUserName" placeholder="Ex: Silva">
+                    </div>
+                    <button class="btn btn-primary" id="saveSettingsBtn">
+                        <i data-lucide="save" style="width:16px;height:16px;"></i> Salvar
+                    </button>
+                </div>
+
+                <!-- Family Members -->
+                <div class="card">
+                    <div class="card-header"><h2>Membros da Família</h2></div>
+                    <div id="peopleList" class="chips-wrap"></div>
+                    <div class="inline-add">
+                        <input type="text" id="newPersonName" placeholder="Nome do membro">
+                        <button class="btn btn-accent" id="addPersonBtn">
+                            <i data-lucide="user-plus" style="width:16px;height:16px;"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Categories -->
+                <div class="card">
+                    <div class="card-header"><h2>Categorias</h2></div>
+                    <div id="customCategoriesList" class="chips-wrap"></div>
+                    <div class="cat-add-form">
+                        <select id="newCatType">
+                            <option value="receita">📥 Receita</option>
+                            <option value="despesa">📤 Despesa</option>
+                            <option value="investimento">📊 Investimento</option>
+                            <option value="resgate">💰 Resgate</option>
+                        </select>
+                        <div class="inline-add">
+                            <input type="text" id="newCatName" placeholder="Nome da categoria">
+                            <button class="btn btn-accent" id="addCategoryBtn">
+                                <i data-lucide="plus" style="width:16px;height:16px;"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Danger Zone -->
+                <div class="card danger-zone">
+                    <div class="card-header"><h2>Zona de Perigo</h2></div>
+                    <p class="text-muted">Esta ação apagará todas as suas transações permanentemente.</p>
+                    <button class="btn btn-danger" id="resetDataBtn">
+                        <i data-lucide="trash-2" style="width:16px;height:16px;"></i> Limpar Todos os Dados
+                    </button>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ═══ MODAL ═══ -->
+        <div id="modalOverlay" class="modal-overlay">
+            <div class="modal-sheet" id="transactionModal">
+                <div class="modal-handle"></div>
+                <div class="modal-top">
+                    <h3>Nova Transação</h3>
+                    <button class="close-btn" onclick="closeModal()" aria-label="Fechar">
+                        <i data-lucide="x" style="width:20px;height:20px;"></i>
+                    </button>
+                </div>
+                <form id="transactionForm">
+                    <!-- Type Selector -->
+                    <div class="type-tabs">
+                        <label class="type-tab">
+                            <input type="radio" name="type" value="receita" checked>
+                            <span class="tab-receita">Entrada</span>
+                        </label>
+                        <label class="type-tab">
+                            <input type="radio" name="type" value="despesa">
+                            <span class="tab-despesa">Saída</span>
+                        </label>
+                        <label class="type-tab">
+                            <input type="radio" name="type" value="investimento">
+                            <span class="tab-investimento">Investir</span>
+                        </label>
+                        <label class="type-tab">
+                            <input type="radio" name="type" value="resgate">
+                            <span class="tab-resgate">Resgate</span>
+                        </label>
+                    </div>
+
+                    <!-- Amount -->
+                    <div class="form-field">
+                        <label for="amount">Valor</label>
+                        <input type="text" id="amount" placeholder="R$ 0,00" inputmode="numeric" required>
+                    </div>
+
+                    <!-- Resgate Options -->
+                    <div id="resgateOptions" class="resgate-panel" style="display:none;">
+                        <label class="toggle-row">
+                            <input type="checkbox" id="resgateToBalance" checked>
+                            <div class="toggle-info">
+                                <strong>Enviar para o Saldo</strong>
+                                <span>O valor será somado ao seu dinheiro disponível</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="form-field">
+                        <label for="description">Descrição</label>
+                        <input type="text" id="description" placeholder="Ex: Supermercado" required>
+                    </div>
+
+                    <!-- Category -->
+                    <div class="form-field">
+                        <label for="category">Categoria</label>
+                        <select id="category" required></select>
+                    </div>
+
+                    <!-- Person -->
+                    <div class="form-field">
+                        <label for="person">Responsável</label>
+                        <select id="person" required></select>
+                    </div>
+
+                    <!-- Date -->
+                    <div class="form-field">
+                        <label for="date">Data</label>
+                        <input type="date" id="date" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i data-lucide="check" style="width:18px;height:18px;"></i> Salvar Transação
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- ═══ BOTTOM NAV ═══ -->
+        <nav class="bottom-nav">
+            <button class="nav-btn active" data-page="home">
+                <i data-lucide="home"></i>
+                <span>Início</span>
+            </button>
+            <button class="nav-btn" data-page="history">
+                <i data-lucide="clock"></i>
+                <span>Histórico</span>
+            </button>
+            <div class="nav-fab-wrap">
+                <button class="fab" id="addBtn" aria-label="Adicionar Transação">
+                    <i data-lucide="plus"></i>
+                </button>
+            </div>
+            <button class="nav-btn" data-page="stats">
+                <i data-lucide="pie-chart"></i>
+                <span>Gráficos</span>
+            </button>
+            <button class="nav-btn" data-page="settings">
+                <i data-lucide="settings"></i>
+                <span>Ajustes</span>
+            </button>
+        </nav>
+
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

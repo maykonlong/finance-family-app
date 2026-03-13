@@ -1,0 +1,48 @@
+tipo,categoria,subgrupo
+Receita,Salário,Salário mensal
+Receita,Bônus,Bônus ocasional
+Receita,Investimentos,Dividendos
+Receita,Rendimentos,Juros
+Receita,Venda,Venda de ativo
+Receita,Reembolso,Reembolso recebido
+
+Despesa,Moradia,Aluguel
+Despesa,Moradia,Condomínio
+Despesa,Moradia,IPTU
+Despesa,Alimentação,Supermercado
+Despesa,Alimentação,Restaurante
+Despesa,Transporte,Combustível
+Despesa,Transporte,Manutenção
+Despesa,Saúde,Plano de saúde
+Despesa,Saúde,Medicamentos
+Despesa,Educação,Mensalidade
+Despesa,Lazer,Viagens
+Despesa,Lazer,Assinaturas
+Despesa,Serviços,Telefonia & Internet
+Despesa,Impostos,IR & taxas
+Despesa,Pessoal,Roupas & higiene
+Despesa,Outros,Diversos
+
+Transferência,Conta Corrente,Transferência entre contas
+Transferência,Conta Poupança,Depósito/Resgate
+Transferência,Cartão de Crédito,Pagamento de fatura
+
+Cartão de Crédito,Compras,Loja física
+Cartão de Crédito,Compras,Online
+Cartão de Crédito,Fatura,Pagamento parcial
+Cartão de Crédito,Fatura,Pagamento total
+Cartão de Crédito,Cashback,Crédito recebido
+
+Investimento,Renda Fixa,CDB/LCI/LCA/Tesouro
+Investimento,Renda Variável,Ações
+Investimento,Fundos,Fundos de investimento
+Investimento,Cripto,Compra/Venda
+Investimento,Rendimentos,Juros e dividendos
+
+Reembolso,Viagem,Despesas reembolsadas por empresa
+Reembolso,Saúde,Reembolso de plano/convênio
+Reembolso,Outros,Reembolso de compras
+
+Ajustes & Taxas,Tarifas,Tarifas bancárias
+Ajustes & Taxas,Multas,Juros e multas
+Ajustes & Taxas,Estorno,Correção de lançamento
